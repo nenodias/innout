@@ -5,4 +5,4 @@ require_once(dirname(__FILE__, 2) . "/src/models/User.php");
 
 $user = new User(["id" => 1, "name" => "Caboclo", "email" => "xubiru@gmail.com"]);
 
-print_r($user);
+print_r($user->get(["id"=> 2], "id, name, email"));
