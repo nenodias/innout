@@ -31,16 +31,24 @@ class Model
         $this->values[$key] = $value;
     }
 
-    public static function get($filters = [], $columns = "*"){
+    public static function get($filters = [], $columns = "*")
+    {
         $objects = [];
         $result = static::getResultSetFromSelect($filters, $columns);
-        if($result){
+        if ($result) {
             $class = get_called_class();
-            while($row = $result->fetch_assoc()){
+            while ($row = $result->fetch_assoc()) {
                 array_push($objects, new $class($row));
             }
         }
         return $objects;
+    }
+
+    public static function getOne($filters = [], $columns = "*")
+    {
+        $result = static::getResultSetFromSelect($filters, $columns);
+        $class = get_called_class();
+        return $result ? new $class($result->fetch_assoc()) : null;
     }
 
     public static function getResultSetFromSelect($filters = [], $columns = "*")
