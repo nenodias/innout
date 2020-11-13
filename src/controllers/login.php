@@ -6,10 +6,10 @@ if (count($_POST) > 0) {
     $login = new Login($_POST);
     try {
         $user = $login->checkLogin();
-        echo "Usuário {$user->name} logado";
+        redirect("day_records.php");
     } catch (Exception $e) {
-        echo "Falha no login :(";
+        $exception = $e;
     }
 }
 
-loadView("login", $_POST);
+loadView("login", $_POST + ["exception" => $exception]);
