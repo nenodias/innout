@@ -2,7 +2,6 @@
 session_start();
 requiredValidSession();
 
-loadModel("WorkingHours");
 
 $user = $_SESSION["user"];
 $date = date("Y-m-d");
