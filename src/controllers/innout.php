@@ -5,11 +5,17 @@ requiredValidSession();
 loadModel("WorkingHours");
 
 $user = $_SESSION["user"];
-$date = (new DateTime())->getTimestamp();
+$date = date("Y-m-d");
 $records = WorkingHours::loadFromUserAndDate($user->id, $date);
 
 try {
+
     $currentTime = strftime("%H:%M:%S", time());
+    if($_POST["forcedTime"]){
+        $currentTime = $_POST["forcedTime"];
+    }
+
+    
     $records->innout($currentTime);
     addSuccessMsg("Ponto inserido com sucesso.");
 } catch (AppException $e) {

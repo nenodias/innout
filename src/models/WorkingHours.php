@@ -56,4 +56,38 @@ class WorkingHours extends Model
             $this->insert();
         }
     }
+
+    function getWorkedInterval(){
+        [$t1, $t2, $t3, $t4] = $this->getTimes();
+
+        $part1 = new DateInterval("PT0S");
+        $part2 = new DateInterval("PT0S");
+
+        if($t1){
+            $part1 = $t1->diff(new DateTime());
+        }
+        if($t1 && $t2){
+            $part1 = $t1->diff($t2);
+        }
+
+        if($t3){
+            $part2 = $t3->diff(new DateTime());
+        }
+        if($t3 && $t4){
+            $part2 = $t3->diff($t4);
+        }
+        return sumIternvals($part1, $part2);
+    }
+
+    private function getTimes(){
+        $times = [];
+
+        array_push($times, $this->time1 ? getDateFromString($this->time1) : null);
+        array_push($times, $this->time2 ? getDateFromString($this->time2) : null);
+        array_push($times, $this->time3 ? getDateFromString($this->time3) : null);
+        array_push($times, $this->time4 ? getDateFromString($this->time4) : null);
+
+        return $times;
+    }
+    
 }
