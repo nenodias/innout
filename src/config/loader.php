@@ -32,6 +32,7 @@ function loadTemplateView($viewName, $params = array())
 
     $workedIterval = $workingHours->getWorkedInterval()->format("%H:%I:%S");
     $exitTime = $workingHours->getExitTime()->format("H:i:s");
+    $activeClock = $workingHours->getActiveClock();
 
 
 
