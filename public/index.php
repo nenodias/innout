@@ -8,7 +8,7 @@ $uri = str_replace(PREFIX, "", $uri);
 
 if($uri === "/" || $uri === "" || $uri === "/index.php")
 {
-    $uri = "/login.php";
+    $uri = "/day_records.php";
 }
 
 
