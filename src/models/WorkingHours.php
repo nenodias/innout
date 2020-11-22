@@ -142,7 +142,7 @@ class WorkingHours extends Model
             SELECT name FROM users
             WHERE end_date IS NULL
             AND id NOT IN (
-                SELECT user_id FROM working_hours WHERE work_date = {$today->format("Y-m-d")}
+                SELECT user_id FROM working_hours WHERE work_date = '{$today->format("Y-m-d")}'
                 AND time1 IS NOT NULL
             )
         ");
