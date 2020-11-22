@@ -8,6 +8,7 @@
     include(TEMPLATE_PATH . "/message.php");
     ?>
     <form action="#" method="post">
+        <input type="hidden" name="id" value="<?= $id ?>">
         <div class="form-row">
             <?= renderInput($model, "Nome", "name", "Informe o nome", "col-md-6", null, "text", $errors) ?>
             <?= renderInput($model, "E-mail", "email", "Informe o email", "col-md-6", null, "text", $errors) ?>

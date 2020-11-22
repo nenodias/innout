@@ -18,7 +18,7 @@ class Model
             $conn = Database::getConnection();
             foreach ($arr as $key => $value) {
                 $cleanValue = $value;
-                if($cleanValue && $sanitize){
+                if ($cleanValue && $sanitize) {
                     $cleanValue = strip_tags(trim($cleanValue));
                     $cleanValue = htmlentities($cleanValue, ENT_NOQUOTES);
                     $cleanValue = mysqli_real_escape_string($conn, $cleanValue);
@@ -39,7 +39,10 @@ class Model
         $this->values[$key] = $value;
     }
 
-
+    public function getValues()
+    {
+        return $this->values;
+    }
 
     public static function get($filters = [], $columns = "*")
     {
@@ -99,17 +102,20 @@ class Model
         $id = Database::executeSQL($sql);
     }
 
-    public static function getCount($filters = []){
+    public static function getCount($filters = [])
+    {
         $result = static::getResultSetFromSelect($filters, "count(*) AS count ");
         return $result->fetch_assoc()["count"];
     }
 
-    public function delete(){
+    public function delete()
+    {
         static::deleteById($this->id);
-    } 
+    }
 
-    public static function deleteById($id){
-        $sql = "DELETE FROM ".static::$tableName. " WHERE id = {$id}";
+    public static function deleteById($id)
+    {
+        $sql = "DELETE FROM " . static::$tableName . " WHERE id = {$id}";
         Database::executeSQL($sql);
     }
 
