@@ -64,10 +64,11 @@ class Model
         }
     }
 
-    public function insert(){
-        $sql = "INSERT INTO ". static::$tableName . " (" 
+    public function insert()
+    {
+        $sql = "INSERT INTO " . static::$tableName . " ("
             . implode(",", static::$columns) . " ) VALUES (";
-        foreach(static::$columns as $col){
+        foreach (static::$columns as $col) {
             $sql .= static::getFormattedValue($this->$col) . ",";
         }
         $sql[strlen($sql) - 1] = ")";
@@ -75,10 +76,11 @@ class Model
         $this->id = $id;
     }
 
-    public function update(){
-        $sql = "UPDATE ". static::$tableName . " SET ";
-        foreach(static::$columns as $col){
-            if($col != "id"){
+    public function update()
+    {
+        $sql = "UPDATE " . static::$tableName . " SET ";
+        foreach (static::$columns as $col) {
+            if ($col != "id") {
                 $sql .= "{$col} = " . static::getFormattedValue($this->$col) . ",";
             }
         }
@@ -93,7 +95,7 @@ class Model
         if (count($filters) > 0) {
             $sql .= " WHERE 1 = 1 ";
             foreach ($filters as $column => $value) {
-                if($column === "raw"){
+                if ($column === "raw") {
                     $sql .= " AND ${value}";
                 } else {
                     $sql .= " AND ${column} = " . static::getFormattedValue($value);

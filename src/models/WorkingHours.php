@@ -121,6 +121,20 @@ class WorkingHours extends Model
         }
     }
 
+    public function getBalance()
+    {
+        if (!$this->time1 && !isPastWorkday($this->work_date)) {
+            return "";
+        }
+        if ($this->worked_time == DAILY_TIME) {
+            return "-";
+        }
+        $balance = $this->worked_time - DAILY_TIME;
+        $balanceString = getTimeStringFromSeconds(abs($balance));
+        $sign = $balance >= 0 ? "+" : "-";
+        return "{$sign}{$balanceString}";
+    }
+
     public static function getMonthlyReport($userId,  $date)
     {
         $registries = [];
@@ -132,8 +146,8 @@ class WorkingHours extends Model
             "raw" => "work_date between '{$startDate}' AND '{$endDate}' "
         ]);
 
-        if($result){
-            while($row = $result->fetch_assoc()){
+        if ($result) {
+            while ($row = $result->fetch_assoc()) {
                 $registries[$row["work_date"]] = new WorkingHours($row);
             }
         }
