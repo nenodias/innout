@@ -1,6 +1,6 @@
 <?php
 session_start();
-requiredValidSession();
+requiredValidSession(true);
 
 $user = $_SESSION["user"];
 
