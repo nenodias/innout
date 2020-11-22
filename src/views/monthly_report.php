@@ -11,7 +11,7 @@
         <form class="mb-4" action="#" method="post">
             <div class="input-group">
                 <?php if ($user->is_admin) : ?>
-                    <select name="user" class="form-control" placeholder="Selecione um usuário...">
+                    <select name="user" class="form-control mr-2" placeholder="Selecione um usuário...">
                         <?php foreach ($users as $user) : ?>
                             <option value="<?= $user->id ?>" <?= $user->id === $selectedUserId ? "selected" : "" ?>>
                                 <?= $user->name ?>
