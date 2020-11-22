@@ -10,13 +10,15 @@
     <div>
         <form class="mb-4" action="#" method="post">
             <div class="input-group">
-                <select name="user" class="form-control" placeholder="Selecione um usuário...">
-                    <?php foreach ($users as $user) : ?>
-                        <option value="<?= $user->id ?>" <?= $user->id === $selectedUserId ? "selected" : "" ?>>
-                            <?= $user->name ?>
-                        </option>
-                    <?php endforeach ?>
-                </select>
+                <?php if ($user->is_admin) : ?>
+                    <select name="user" class="form-control" placeholder="Selecione um usuário...">
+                        <?php foreach ($users as $user) : ?>
+                            <option value="<?= $user->id ?>" <?= $user->id === $selectedUserId ? "selected" : "" ?>>
+                                <?= $user->name ?>
+                            </option>
+                        <?php endforeach ?>
+                    </select>
+                <?php endif ?>
                 <select name="period" class="form-control" placeholder="Selecione um período...">
                     <?php foreach ($periods as $key => $month) : ?>
                         <option value="<?= $key ?>" <?= $key === $selectedPeriod ? "selected" : "" ?>>
