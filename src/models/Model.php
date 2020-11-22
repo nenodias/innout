@@ -31,6 +31,8 @@ class Model
         $this->values[$key] = $value;
     }
 
+
+
     public static function get($filters = [], $columns = "*")
     {
         $objects = [];
@@ -87,6 +89,11 @@ class Model
         $sql[strlen($sql) - 1] = " ";
         $sql .= "WHERE id = {$this->id}";
         $id = Database::executeSQL($sql);
+    }
+
+    public static function getCount($filters = []){
+        $result = static::getResultSetFromSelect($filters, "count(*) AS count ");
+        return $result->fetch_assoc()["count"];
     }
 
     private static function getFilters($filters)

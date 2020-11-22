@@ -2,4 +2,4 @@
 session_start();
 requiredValidSession();
 
-print_r(getLastDayOfMonth("2019-08-04"));
+print_r(WorkingHours::getWorkedTimeInMonth("2020-11"));
