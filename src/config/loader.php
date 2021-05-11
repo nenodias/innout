@@ -27,7 +27,7 @@ function loadTemplateView($viewName, $params = array())
         }
     }
 
-    $user = $_SESSION["user"];
+    $user = isset($_SESSION) && isset($_SESSION["user"]) ? $_SESSION["user"] : new User();
     $workingHours = WorkingHours::loadFromUserAndDate($user->id, date('Y-m-d'));
 
     $workedIterval = $workingHours->getWorkedInterval()->format("%H:%I:%S");
