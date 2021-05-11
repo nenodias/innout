@@ -10,7 +10,7 @@ $records = WorkingHours::loadFromUserAndDate($user->id, $date);
 try {
 
     $currentTime = strftime("%H:%M:%S", time());
-    if($_POST["forcedTime"]){
+    if(isset($_POST) && isset($_POST["forcedTime"])){
         $currentTime = $_POST["forcedTime"];
     }
 
