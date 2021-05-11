@@ -94,5 +94,9 @@ function getTimeStringFromSeconds($seconds)
 function formateDateWithLocale($date, $pattern)
 {
     $time = getDateAsDateTime($date)->getTimestamp();
-    return utf8_encode(strftime($pattern, $time));
+    $retorno = strftime($pattern, $time);
+    if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+        $retorno = utf8_encode($retorno);
+    } 
+    return $retorno;
 }
