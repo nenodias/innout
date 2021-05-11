@@ -7,7 +7,7 @@ if(isset($_SESSION["message"])){
     if(isset($_SESSION) && isset($_SESSION["message"])){
         unset($_SESSION["message"]);
     }
-} else if ($exception) {
+} else if (isset($exception)) {
     $message = [
         "type" => "error",
         "message" => $exception->getMessage()
