@@ -1,6 +1,6 @@
 <?php
-loadModel("login");
 session_start();
+loadModel("login");
 
 if (count($_POST) > 0) {
     $login = new Login($_POST);
