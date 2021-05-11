@@ -5,6 +5,7 @@ function loadModel($modelName)
     try{
         require_once(MODEL_PATH . "/{$modelName}.php");
     }catch(Exception $e){
+        error_log("Model $modelName não encontrado";
         error_log($e->getMessage());
     }
 }
