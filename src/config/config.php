@@ -8,22 +8,26 @@ define("PREFIX", "/innout");
 
 //Constantes Gerais
 define("DAILY_TIME", 60 * 60 * 8);
+$envPath = realpath(dirname(__FILE__) . "/../app.ini");
+$env = parse_ini_file($envPath);
+$directory = isset($env) ? isset($env["path"]) ? $env["path"] : dirname(__FILE__);
+define("APP_PATH", $directory);
 
 //Pastas
-define("MODEL_PATH", realpath(dirname(__FILE__) . "/../models"));
-define("VIEW_PATH", realpath(dirname(__FILE__) . "/../views"));
-define("TEMPLATE_PATH", realpath(dirname(__FILE__) . "/../views/template"));
-define("CONTROLLER_PATH", realpath(dirname(__FILE__) . "/../controllers"));
-define("EXCEPTION_PATH", realpath(dirname(__FILE__) . "/../exceptions"));
+define("MODEL_PATH", realpath(APP_PATH . "/../models"));
+define("VIEW_PATH", realpath(APP_PATH . "/../views"));
+define("TEMPLATE_PATH", realpath(APP_PATH . "/../views/template"));
+define("CONTROLLER_PATH", realpath(APP_PATH . "/../controllers"));
+define("EXCEPTION_PATH", realpath(APP_PATH . "/../exceptions"));
 
 
 //Arquivos
-require_once(realpath(dirname(__FILE__) . "/database.php"));
-require_once(realpath(dirname(__FILE__) . "/loader.php"));
-require_once(realpath(dirname(__FILE__) . "/session.php"));
-require_once(realpath(dirname(__FILE__) . "/date_utils.php"));
-require_once(realpath(dirname(__FILE__) . "/utils.php"));
-require_once(realpath(dirname(__FILE__) . "/view.php"));
+require_once(realpath(APP_PATH . "/database.php"));
+require_once(realpath(APP_PATH . "/loader.php"));
+require_once(realpath(APP_PATH . "/session.php"));
+require_once(realpath(APP_PATH . "/date_utils.php"));
+require_once(realpath(APP_PATH . "/utils.php"));
+require_once(realpath(APP_PATH . "/view.php"));
 require_once(realpath(MODEL_PATH . "/Model.php"));
 require_once(realpath(MODEL_PATH . "/User.php"));
 require_once(realpath(MODEL_PATH . "/WorkingHours.php"));
