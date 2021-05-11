@@ -1,7 +1,7 @@
 <?php
 
 $errors = [];
-
+$message = NULL;
 if(isset($_SESSION["message"])){
     $message = $_SESSION["message"];
     if(isset($_SESSION) && isset($_SESSION["message"])){
