@@ -8,9 +8,7 @@ define("PREFIX", "/innout");
 
 //Constantes Gerais
 define("DAILY_TIME", 60 * 60 * 8);
-$envPath = realpath(dirname(__FILE__) . "/../app.ini");
-$env = parse_ini_file($envPath);
-$directory = isset($env) && isset($env["path"]) ? $env["path"] : dirname(__FILE__);
+$directory = dirname(__FILE__);
 define("APP_PATH", $directory);
 
 //Pastas
