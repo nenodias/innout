@@ -13,6 +13,7 @@ function requiredValidSession($requiresAdmin = false)
     } else if ($requiresAdmin) {
         badSession();
     }
+    $_SESSION["user"] = new User();
 }
 
 function badSession()
