@@ -10,6 +10,7 @@ class Database
         if ($conn->connect_error) {
             die("Erro:" . $conn->connect_error);
         }
+        $conn->set_charset("utf-8");
         return $conn;
     }
 
