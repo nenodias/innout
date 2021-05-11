@@ -2,7 +2,11 @@
 
 function loadModel($modelName)
 {
-    require_once(MODEL_PATH . "/{$modelName}.php");
+    try{
+        require_once(MODEL_PATH . "/{$modelName}.php");
+    }catch(Exception $e){
+        error_log($e->getMessage());
+    }
 }
 
 function loadView($viewName, $params = array())
