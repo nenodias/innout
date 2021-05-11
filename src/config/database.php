@@ -10,7 +10,9 @@ class Database
         if ($conn->connect_error) {
             die("Erro:" . $conn->connect_error);
         }
-        $conn->set_charset($env["charset"]);
+        if(isset($env["charset"])){
+            $conn->set_charset($env["charset"]);
+        }
         return $conn;
     }
 
