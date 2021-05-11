@@ -2,13 +2,22 @@
 
 function requiredValidSession($requiresAdmin = false)
 {
-    $user = $_SESSION["user"];
-    if (!isset($user)) {
-        redirect("login.php");
-        exit();
-    } else if($requiresAdmin && !$user->is_admin){
-        addErrorMsg("Acesso negado!");
-        redirect("day_records.php");
-        exit();
+    if (isset($_SESSION) && isset($_SESSION["user"])) {
+        $user = $_SESSION["user"];
+        if (!isset($user)) {
+            redirect("login.php");
+            exit();
+        } else if ($requiresAdmin && !$user->is_admin) {
+            badSession();
+        }
+    } else if ($requiresAdmin) {
+        badSession();
     }
+}
+
+function badSession()
+{
+    addErrorMsg("Acesso negado!");
+    redirect("day_records.php");
+    exit();
 }
