@@ -31,7 +31,7 @@ class Model
 
     public function __get($key)
     {
-        return $this->values[$key];
+        return isset($this->values) && isset($this->values[$key]) ? $this->values[$key] : NULL;
     }
 
     public function __set($key, $value)
