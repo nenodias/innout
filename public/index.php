@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once(dirname(__FILE__, 2) . "/src/config/config.php");
 
 $uri = urldecode(
