@@ -30,7 +30,7 @@
                         value="<?= isset($email) ? $email : "" ?>"
                         placeholder="Informe o e-mail" autofocus>
                     <div class="invalid-feedback">
-                        <?= $errors["email"] ?>
+                        <?= isset($errors) && isset($errors["email"]) ? $errors["email"] : "" ?>
                     </div>
                 </div>
                 <div class="form-group">
@@ -39,7 +39,7 @@
                         class="form-control <?= isset($errors) && isset($errors["password"]) && $errors["password"] ? "is-invalid" : "" ?>" 
                         placeholder="Informe a senha" autofocus>
                         <div class="invalid-feedback">
-                            <?= $errors["password"] ?>
+                            <?= isset($errors) && isset($errors["password"]) ? $errors["password"] : "" ?>
                         </div>
                 </div>
             </div>
