@@ -4,9 +4,10 @@ requiredValidSession();
 
 $currentDate = new DateTime();
 
-$user = $_SESSION["user"];
+$user = getSessionUser();
 $selectedUserId = $user->id;
 $users = null;
+
 if($user->is_admin){
     $users = User::get();
     $selectedUserId = $_POST["user"] ? $_POST["user"] : $user->id;
@@ -24,7 +25,9 @@ for ($yearDiff = 0; $yearDiff <= 2; $yearDiff++) {
     }
 }
 
-$registries = WorkingHours::getMonthlyReport($selectedUserId, $currentDate);
+$date = getDateAsDateTime($selectedPeriod."-01");
+
+$registries = WorkingHours::getMonthlyReport($selectedUserId, $date);
 
 $report = [];
 $workDay = 0;

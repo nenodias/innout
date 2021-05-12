@@ -1,5 +1,14 @@
 <?php
 
+function getSessionUser(){
+    return isset($_SESSION) && isset($_SESSION["user"]) ? unserialize($_SESSION["user"]) : new User();
+}
+
+function putSessionUser($user){
+    $_SESSION["user"] = serialize($user);
+    return $user;
+}
+
 function loadModel($modelName)
 {
     try{
@@ -32,7 +41,7 @@ function loadTemplateView($viewName, $params = array())
         }
     }
 
-    $user = isset($_SESSION) && isset($_SESSION["user"]) ? $_SESSION["user"] : new User();
+    $user = getSessionUser();
     $workingHours = WorkingHours::loadFromUserAndDate($user->id, date('Y-m-d'));
 
     $workedIterval = $workingHours->getWorkedInterval()->format("%H:%I:%S");

@@ -3,7 +3,7 @@ session_start();
 requiredValidSession();
 
 
-$user = $_SESSION["user"];
+$user = getSessionUser();
 $date = date("Y-m-d");
 $records = WorkingHours::loadFromUserAndDate($user->id, $date);
 

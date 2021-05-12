@@ -27,8 +27,8 @@
         <div class="spacer"></div>
         <div class="dropdown">
             <div class="dropdown-button">
-                <img class="avatar" src="<?= gravatar($_SESSION["user"]->email) ?>" alt="user">
-                <span class="ml-3"><?= $_SESSION["user"]->name ?></span>
+                <img class="avatar" src="<?= gravatar(getSessionUser()->email) ?>" alt="user">
+                <span class="ml-3"><?= getSessionUser()->name ?></span>
                 <i class="icofont-simple-down mx-2">
                 </i>
             </div>

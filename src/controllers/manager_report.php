@@ -2,7 +2,7 @@
 session_start();
 requiredValidSession(true);
 
-$user = $_SESSION["user"];
+$user = getSessionUser();
 
 $activeUsersCount = User::getActiveUsersCount();
 $absentUsers = WorkingHours::getAbsentUsers();

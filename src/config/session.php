@@ -2,18 +2,12 @@
 
 function requiredValidSession($requiresAdmin = false)
 {
-    if (isset($_SESSION) && isset($_SESSION["user"])) {
-        $user = $_SESSION["user"];
-        if (!isset($user)) {
-            redirect("login.php");
-            exit();
-        } else if ($requiresAdmin && !$user->is_admin) {
-            badSession();
-        }
-    } else if ($requiresAdmin) {
+    $user = getSessionUser();
+    if (!$user->id) {
+        redirect("login.php");
+        exit();
+    } else if ($requiresAdmin && !$user->is_admin) {
         badSession();
-    }else {
-        $_SESSION["user"] = new User();
     }
 }
 
